@@ -1,0 +1,24 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func main() {
+	x := 10
+	fmt.Println("Value of x before calling modifyValue:", x)
+	modifyValue(&x)
+	fmt.Println("Value of x after calling modifyValue:", x)
+	modifyValueWithoutPointer(x)
+	fmt.Println("Value of x after calling modifyValueWithoutPointer:", x)
+}
+
+func modifyValue(ptr *int) {
+	// This function will change the actual value of the variable
+	*ptr = 20
+}
+
+func modifyValueWithoutPointer(num int) {
+	// As function paramters creates a local copy of the variable being passed, it will not modify the actual variable
+	num = 100
+}

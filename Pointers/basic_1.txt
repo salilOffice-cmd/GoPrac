@@ -1,0 +1,18 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+func main() {
+	var x int = 10 // Declare a variable x of type int and assign it the value 10
+	var ptr *int   // Declare a pointer variable ptr of type int
+
+	ptr = &x // Assign the memory address of x to the pointer ptr
+
+	fmt.Println("Value of x:", x)                                  
+	fmt.Println("Memory address of x:", &x)   
+	fmt.Println("Address stored in ptr:", ptr)
+	fmt.Println("Value at the memory address stored in ptr:", *ptr)
+	
+}

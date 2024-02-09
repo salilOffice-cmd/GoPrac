@@ -1,0 +1,30 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import "fmt"
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func main() {
+
+	var person1 Person = Person{"Salil", 2}
+	fmt.Println("Before - ", person1)
+
+	var ptr *Person = &person1
+
+	changeOriginalStruct(ptr)
+	// or
+	// changeOriginalStruct(&person1)
+
+	fmt.Println("After- ", person1)
+
+}
+
+func changeOriginalStruct(personStruct *Person) {
+	personStruct.Name = "Salil111"
+	personStruct.Age = 100
+}

@@ -1,0 +1,45 @@
+// You can edit this code!
+// Click here and start typing.
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+// CHANNELS
+// Channels allow goroutines(functions that have async tasks) to communicate with each other by sending and receiving values.
+// This enables coordination and data exchange between concurrent tasks.
+
+func sender(ch chan<- string) {
+	// Note == When a function specifies a parameter of type chan<- T, it can only send values of type T to the channel.
+	time.Sleep(2 * time.Second) // Simulate some work
+	ch <- "Hello, from the sender!"
+	// msg := <-ch // gives error bcz channel 'ch' is only a send-only channel here
+}
+
+func receiver(ch <-chan string, doneCh chan<- bool) {
+	// Note == When a function specifies a parameter of type <-chan T, it can only receive values of type T from the channel.
+	// In other words, the channel that is being passed to this function is only a read-only channel
+	
+	// Here the receiver will wait until channel 'ch' has some data in it
+	msg := <-ch
+	fmt.Println("Receiver received:", msg)
+
+	// Perform some processing with the received data
+
+	doneCh <- true // Signal that processing is complete
+	(recommended way for the last goroutine, so that the main function will wait until the last goroutine get executed)
+}
+
+func main() {
+	messageChannel := make(chan string)
+	doneChannel := make(chan bool)
+
+	go sender(messageChannel)                // Start the sender goroutine
+	go receiver(messageChannel, doneChannel) // Start the receiver goroutine
+
+	<-doneChannel // waiting for processing to complete
+	// in our case the main function will wait for the receiver function to complete
+
+}
