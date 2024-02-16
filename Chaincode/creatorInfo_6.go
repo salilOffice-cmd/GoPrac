@@ -64,6 +64,19 @@ func main() {
         return
     }
 
+
+    // Certificate got from the DecodeCreator() can have these properties
+    // Print the output (decoded certificate)
+    fmt.Println("Output (decoded certificate):")
+    fmt.Printf("Subject: %s\n", cert.Subject)
+    fmt.Printf("Issuer: %s\n", cert.Issuer)
+    fmt.Printf("Serial Number: %s\n", cert.SerialNumber)
+    fmt.Printf("Not Before: %s\n", cert.NotBefore)
+    fmt.Printf("Not After: %s\n", cert.NotAfter)
+    // Add more fields as needed
+
+
+    
     // Extract and print each type of information
     publicKey := ExtractPublicKey(cert)
     fmt.Println("Public Key:", publicKey)
