@@ -19,26 +19,27 @@ func main() {
 	// array - these are fixed length arrays
 	var arr1 = [3]int{1, 3}
 	fmt.Println(arr1)
-	var arr2 = [...]int{1, 2, 3}
+	var arr2 = [...]int{1, 2, 3} // when you dont know the length of the array
 	fmt.Println(arr2)
+
 
 	// SLICES
 	// array - dynamic length arrays(called as slices)
 
-	myslice1 := []int{} // creates an empty array
+	myslice1 := []int{} // creates an empty slice
 	fmt.Println(len(myslice1))
 	fmt.Println(cap(myslice1))
 	fmt.Println(myslice1)
 
 	// slices can also be created using make() function
 	var myslice2 = make([]int, 5, 10)
-	// len,cap
+				// len,cap
 	fmt.Println(myslice2)
 
 	// Append to slices (mostly used operation)
 	myslice1 = append(myslice1, 20)
 	myslice1 = append(myslice1, 21)
-	myslice1 = append(myslice1, 22, 23)
+	myslice1 = append(myslice1, 22, 23) // can append multiple value simultaneously
 	fmt.Println(myslice1)
 
 	// append one slice to another

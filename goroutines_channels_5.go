@@ -11,6 +11,7 @@ import (
 // Channels allow goroutines(functions that have async tasks) to communicate with each other by sending and receiving values.
 // This enables coordination and data exchange between concurrent tasks.
 
+// Goroutine1
 func sender(ch chan<- string) {
 	// Note == When a function specifies a parameter of type chan<- T, it can only send values of type T to the channel.
 	time.Sleep(2 * time.Second) // Simulate some work
@@ -18,9 +19,10 @@ func sender(ch chan<- string) {
 	// msg := <-ch // gives error bcz channel 'ch' is only a send-only channel here
 }
 
+// Goroutine2
 func receiver(ch <-chan string, doneCh chan<- bool) {
 	// Note == When a function specifies a parameter of type <-chan T, it can only receive values of type T from the channel.
-	// In other words, the channel that is being passed to this function is only a read-only channel
+	// In other words, the first channel that is being passed to this function is only a read-only channel
 	
 	// Here the receiver will wait until channel 'ch' has some data in it
 	msg := <-ch

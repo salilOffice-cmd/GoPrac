@@ -1,0 +1,33 @@
+Now, let's consider an external application or component that
+wants to listen for the "AssetCreated" event and respond to it.
+
+// Lets say this function is created in another language
+// Listen for the "AssetCreated" event
+func ListenForAssetCreatedEvent() {
+    // Connect to the blockchain network
+    // Subscribe to the "AssetCreated" event
+    // Specify a callback function to handle event notifications
+    blockchainClient.SubscribeToEvent("AssetCreated", func(eventPayload []byte) {
+        // Process the event payload (e.g., extract the asset ID)
+        assetID := string(eventPayload)
+
+        // Perform actions based on the event (e.g., update UI, trigger processes)
+        fmt.Printf("New asset created with ID: %s\n", assetID)
+    })
+}
+
+
+Event Notification:
+
+When a new asset is created using the chaincode's CreateAsset function,
+the chaincode emits an "AssetCreated" event with the asset ID as the payload. 
+This event notification is broadcasted to all registered listeners.
+
+
+Handling Events:
+
+The external application, which is listening for "AssetCreated" events, 
+receives the event notification and triggers the specified callback function. 
+In this example, the callback function simply prints the asset ID to the console, 
+but in a real-world scenario, it could perform more meaningful actions such as 
+updating a user interface, triggering business processes, or integrating with other systems.

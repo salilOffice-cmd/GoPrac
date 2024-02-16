@@ -5,7 +5,7 @@ package main
 import "fmt"
 
 func main() {
-	var x int = 10 // Declare a variable x of type int and assign it the value 10
+	var x int = 10 
 	var ptr *int   // Declare a pointer variable ptr of type int
 
 	ptr = &x // Assign the memory address of x to the pointer ptr

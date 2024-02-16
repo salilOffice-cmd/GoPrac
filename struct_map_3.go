@@ -9,6 +9,8 @@ type Person struct {
 	Age  int
 }
 
+
+
 func main() {
 
 	// STRUCT
@@ -30,6 +32,7 @@ func main() {
 	person4.Name = "Rohit"
 	person4.Age = 23
 	fmt.Println(person4)
+	
 
 	// MAP
 
