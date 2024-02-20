@@ -1,4 +1,16 @@
-1. Creating Asset: Use the PutState method of the stub to store the new asset in the ledger.
+// A smart contract can access a range of functionality in a smart contract
+// via the transaction context 'stub' and 'clientIdentity'.
+
+// In this lesson, we have performed CRUD operations using 'STUB'
+
+
+// To get all the functions of GetStub().{function}
+// refer 
+// https://hyperledger-fabric.readthedocs.io/en/release-2.2/developapps/transactioncontext.html#stub
+// OR
+// https://pkg.go.dev/github.com/hyperledger/fabric-chaincode-go/shim#ChaincodeStubInterface
+
+// 1. Creating Asset: Use the PutState method of the stub to store the new asset in the ledger.
 func (s *SimpleAssetChaincode) CreateAsset(ctx contractapi.TransactionContextInterface, asset Asset) error {
     // Check if asset already exists
     exists, err := s.AssetExists(ctx, asset.ID)
@@ -28,7 +40,7 @@ func (s *SimpleAssetChaincode) CreateAsset(ctx contractapi.TransactionContextInt
 
 
 
-2. UpdateAsset: Use the PutState method of the stub to update the existing asset in the ledger.
+// 2. UpdateAsset: Use the PutState method of the stub to update the existing asset in the ledger.
 func (s *SimpleAssetChaincode) UpdateAsset(ctx contractapi.TransactionContextInterface, updatedAsset Asset) error {
    
     // To update an asset, logically it makes sense that we should check if the key exists in ledger or not
@@ -58,7 +70,7 @@ func (s *SimpleAssetChaincode) UpdateAsset(ctx contractapi.TransactionContextInt
 }
 
 
-3. TransferAssetOwnership: Use the PutState method of the stub to update the ownership field of the existing asset in the ledger.
+// 3. TransferAssetOwnership: Use the PutState method of the stub to update the ownership field of the existing asset in the ledger.
 func (s *SimpleAssetChaincode) TransferAssetOwnership(ctx contractapi.TransactionContextInterface, assetID string, newOwner string) error {
     
     // Retrieve existing asset from the ledger
@@ -96,7 +108,7 @@ func (s *SimpleAssetChaincode) TransferAssetOwnership(ctx contractapi.Transactio
 }
 
 
-4. DeleteAsset: Use the DelState method of the stub to delete the existing asset from the ledger.
+// 4. DeleteAsset: Use the DelState method of the stub to delete the existing asset from the ledger.
 func (s *SimpleAssetChaincode) DeleteAsset(ctx contractapi.TransactionContextInterface, assetID string) error {
 
     // Check if asset exists
@@ -118,7 +130,7 @@ func (s *SimpleAssetChaincode) DeleteAsset(ctx contractapi.TransactionContextInt
 }
 
 
-5. AssetExists: Use the GetState method of the stub to check if an asset exists in the ledger.
+// 5. AssetExists: Use the GetState method of the stub to check if an asset exists in the ledger.
 func (s *SimpleAssetChaincode) AssetExists(ctx contractapi.TransactionContextInterface, assetID string) (bool, error) {
     // Check if asset exists in the ledger
     assetJSON, err := ctx.GetStub().GetState(assetID)
@@ -129,7 +141,7 @@ func (s *SimpleAssetChaincode) AssetExists(ctx contractapi.TransactionContextInt
 }
 
 
-6. QueryAssetByID: Use the GetState method of the stub to retrieve the asset from the ledger by its ID.
+// 6. QueryAssetByID: Use the GetState method of the stub to retrieve the asset from the ledger by its ID.
 func (s *SimpleAssetChaincode) QueryAssetByID(ctx contractapi.TransactionContextInterface, assetID string) (Asset, error) {
     // Retrieve asset from the ledger
     assetJSON, err := ctx.GetStub().GetState(assetID)
@@ -153,7 +165,7 @@ func (s *SimpleAssetChaincode) QueryAssetByID(ctx contractapi.TransactionContext
 }
 
 
-7.QueryAllAssets: Use the GetStateByRange method of the stub to retrieve all assets from the ledger.
+// 7.QueryAllAssets: Use the GetStateByRange method of the stub to retrieve all assets from the ledger.
 func (s *SimpleAssetChaincode) QueryAllAssets(ctx contractapi.TransactionContextInterface) ([]*Asset, error) {
     // Retrieve all assets from the ledger
     resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
@@ -205,7 +217,7 @@ func (s *SimpleAssetChaincode) QueryAllAssets(ctx contractapi.TransactionContext
 }
 
 
-8. GetHistoryForAsset: Use the GetHistoryForKey method of the stub to retrieve the transaction history for the asset by its ID.
+// 8. GetHistoryForAsset: Use the GetHistoryForKey method of the stub to retrieve the transaction history for the asset by its ID.
 func (s *SimpleAssetChaincode) GetHistoryForAsset(ctx contractapi.TransactionContextInterface, assetID string) ([]*TransactionHistory, error) {
     // Retrieve transaction history for the asset from the ledger
     resultsIterator, err := ctx.GetStub().GetHistoryForKey(assetID)

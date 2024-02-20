@@ -1,3 +1,12 @@
+// Here we are manually dealing the X509 Certificates, by parsing the raw bytes
+// and doing complex stuff
+// But as we see will in the next lesson, we can use the 'cid' library
+// This library simplifies the process of working with identity
+// information within chaincode, making it more developer-friendly and
+// reducing the complexity of handling certificates and their attributes.
+
+// This lesson is just for demonstration purpose about how Cid works internally
+
 import (
     "encoding/pem"
     "encoding/x509"
@@ -6,8 +15,21 @@ import (
     "time"
 )
 
+type MyContract struct {
+	contractapi.Contract
+}
+
+
 // DecodeCreator decodes the byte array representation of the creator into an x509 certificate.
-func DecodeCreator(creatorBytes []byte) (*x509.Certificate, error) {
+func DecodeCreator(c *MyContract) (*x509.Certificate, error) {
+
+    creatorBytes, err := ctx.GetClientIdentity().GetCreator()
+    // the above variable will look something like this:
+    // creatorBytes = []byte("-----BEGIN CERTIFICATE-----\nMIIBIjCB...-----END CERTIFICATE-----\n")
+	if err != nil {
+		return fmt.Errorf("failed to get creator bytes: %w", err)
+	}
+
     // Decode the PEM-encoded certificate
     block, _ := pem.Decode(creatorBytes)
     if block == nil {
@@ -54,11 +76,10 @@ func ExtractSignature(cert *x509.Certificate) []byte {
 }
 
 func main() {
-    // Sample creator byte array
-    creatorBytes := []byte("-----BEGIN CERTIFICATE-----\nMIIBIjCB...-----END CERTIFICATE-----\n")
+
 
     // Decode the creator
-    cert, err := DecodeCreator(creatorBytes)
+    cert, err := DecodeCreator()
     if err != nil {
         fmt.Println("Error decoding creator:", err)
         return

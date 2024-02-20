@@ -1,6 +1,7 @@
 // These are the actual functions that we will use the interact with ledger
 
 // Functions available through the Chaincode Stub:
+// For more - https://hyperledger-fabric.readthedocs.io/en/release-2.2/developapps/transactioncontext.html#stub
 
 // GetArgs: Retrieves the arguments passed to the chaincode invocation.
 // GetFunctionAndParameters: Parses the chaincode invocation to extract the function name and parameters.

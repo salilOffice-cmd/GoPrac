@@ -24,6 +24,8 @@ type Asset struct {
 }
 
 // INIT AND INVOKE
+
+// INIT (can be considered as a contructor for the contract)
 // When using the low level api for Go, both the Init and Invoke functions are essential.
 func (s *SimpleAssetChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	// Initialize chaincode
@@ -33,6 +35,7 @@ func (s *SimpleAssetChaincode) Init(stub shim.ChaincodeStubInterface) pb.Respons
 	return shim.Success(nil)
 }
 
+// INVOKE (mediator for the external application and the custom functions of the contract)
 func (s *SimpleAssetChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 
 	// The Invoke function is the entry point for processing transactions in the chaincode.

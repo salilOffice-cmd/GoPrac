@@ -7,7 +7,7 @@
 // These methods does not directly interact with the ledger but uses the 'chaincode stub' inside their implementation
 // and the stub thereafter interacts with ledger
 
-// List of Functions:
+// List of Functions created by me in this chaincode:
 // InitLedger: Initializes the ledger with initial data when the chaincode is instantiated or upgraded.
 // CreateAsset: Creates a new asset in the ledger.
 // UpdateAsset: Updates an existing asset in the ledger.

@@ -3,8 +3,13 @@ package main
 // At the time of release and till hyperledger fabric 2.x,
 // low level APIs are being used.
 // But in the modern world, we now use contractapi which are also called as high level APIs
-// In high level APIs, we dont have Init and Invoke functions
+// In high level APIs, Init and Invoke functions are not essential
+// However, we can define an Init function and we will invoke this function for instantiation of the 
+// chaincode on a peer after the chaincode definition has been committed to the channel.
 // In low level APIs, we had to use shim.ChaincodeStubInterface, detail code of low level api in chapter 2B
+
+// To read more about contractApi, refer
+// https://pkg.go.dev/github.com/hyperledger/fabric-contract-api-go/contractapi
 
 import (
 	"fmt"
@@ -14,7 +19,8 @@ import (
 
 
 
-// You can say that SimpleAssetChaincode acts the smart contract
+// You can say that SimpleAssetChaincode acts as the smart contract
+// In other words, SimpleAssetChaincode defines the Smart Contract structure
 // You can add methods to the struct by defining your custom functions
 // So, in that way all your custom functions of the contract can be called using this struct
 // The syntax below indicates that SimpleAssetChaincode inherits all the functions and properties 
